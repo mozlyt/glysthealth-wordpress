@@ -2,6 +2,8 @@ FROM wordpress:php8.2-apache
 
 EXPOSE 8080
 ENV PORT=8080
+wp theme install astra --activate --path=/var/www/html
+define('FS_METHOD', 'direct');
 
 # Install dependencies and Astra theme
 RUN apt-get update && apt-get install -y unzip curl && \
