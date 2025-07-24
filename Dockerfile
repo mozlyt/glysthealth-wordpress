@@ -1,5 +1,3 @@
-define('FS_METHOD', 'direct');
-
 FROM wordpress:php8.2-apache
 
 EXPOSE 8080
@@ -14,5 +12,11 @@ RUN apt-get update && apt-get install -y unzip curl && \
 # Replace default port
 RUN sed -i "s/80/${PORT}/" /etc/apache2/ports.conf \
  && sed -i "s/80/${PORT}/" /etc/apache2/sites-available/000-default.conf
+
+# Copy wp-config and install WP-CLI to activate Astra
+COPY wp-config.php /var/www/html/wp-config.php
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+    chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp && \
+    wp theme activate astra --path=/var/www/html
 
 CMD ["apache2-foreground"]
