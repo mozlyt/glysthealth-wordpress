@@ -1,3 +1,4 @@
+define('FS_METHOD', 'direct');
 
 FROM wordpress:php8.2-apache
 
