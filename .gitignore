@@ -1,10 +1,9 @@
 # Wordpress - ignore core, configuration, examples, uploads and logs.
 # https://github.com/github/gitignore/blob/main/WordPress.gitignore
+# Configuration
+# wp-config.php (overridden for container versioning)
+!wp-config.php
 
-# Core
-#
-# Note: if you want to stage/commit WP core files
-# you can delete this whole section/until Configuration.
 /wp-admin/
 /wp-content/index.php
 /wp-content/languages
