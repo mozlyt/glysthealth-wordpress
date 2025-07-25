@@ -21,9 +21,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chown -R www-data:www-data /var/www/html && \
     su -s /bin/bash www-data -c "\
         wp theme install astra --activate --path=/var/www/html && \
-        wp plugin install woocommerce --activate --path=/var/www/html && \
-        wp plugin install health-and-fitness --activate --path=/var/www/html && \
-        wp plugin install astra-sites --activate --path=/var/www/html \
+        wp plugin install woocommerce health-and-fitness astra-sites --activate --path=/var/www/html \
     "
 
 # 🛎️ Start Apache
