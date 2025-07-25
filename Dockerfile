@@ -4,6 +4,19 @@ EXPOSE 8080
 ENV PORT=8080
 wp theme install astra --activate --path=/var/www/html
 define('FS_METHOD', 'direct');
+# Set correct ownership first
+RUN chown -R www-data:www-data /var/www/html
+wp astra-sites import health-wellness --path=/var/www/html
+
+# Use WP-CLI to install plugins and starter templates
+RUN su -s /bin/bash www-data -c "\
+    wp plugin install woocommerce --activate --path=/var/www/html --allow-root && \
+    wp plugin install health-and-fitness --activate --path=/var/www/html --allow-root && \
+    wp plugin install astra-sites --activate --path=/var/www/html --allow-root \
+"
+
+# Optional: Auto-import Health & Wellness homepage template
+# Note: This requires Astra Sites plugin and API fetch via WP-CLI or custom JSON
 
 # Install dependencies and Astra theme
 RUN apt-get update && apt-get install -y unzip curl && \
