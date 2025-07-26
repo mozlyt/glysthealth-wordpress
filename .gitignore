@@ -1,5 +1,41 @@
-# Configuration
-# wp-config.php (overridden for container versioning)
-!wp-config.php
-# wp-config.php (ignored by default for safety)
-# wp-config.php
+# 📁 WordPress sensitive and config files
+wp-config.php
+wp-content/debug.log
+
+# 🔐 Database and export files
+*.sql
+*.sqlite
+*.log
+
+# 💾 OS & Editor metadata
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+
+# 🐳 Docker and environment artifacts
+.env
+docker-compose.override.yml
+*.tar
+*.gz
+
+# 🚀 WP-CLI config and cache
+wp-cli.local.yml
+.wp-cli/cache/*
+
+# 🎨 Allow template wp-config for secure injection
+!config/wp-config-template.php
+
+# 📦 Dependency folders (for theme/plugin dev)
+node_modules/
+vendor/
+package-lock.json
+composer.lock
+
+# 🧠 IDE folders
+.vscode/
+.idea/
+
+# 🌐 Optional: Ignore mounted cloud storage paths
+wp-content/plugins/*
+wp-content/themes/*
